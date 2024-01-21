@@ -1,0 +1,28 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+using namespace std;
+int main() {
+int n,r;
+	cin>>n;
+	cin>>r;
+	queue <int>q;
+	for(int i=0;i<n;i++){
+		int x;
+		cin>>x;
+		q.push(x);
+	}
+	
+	for(int i=0;i<r;i++){
+		int x=q.front();
+		q.pop();
+		q.push(x);
+	}
+for(int i=0;i<n;i++){
+	cout<<q.front()<<" ";
+	q.pop();
+}
+	
+	
+}
