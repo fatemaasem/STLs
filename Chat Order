@@ -1,0 +1,36 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+using namespace std;
+int main() {
+	
+	int n;
+	cin >> n;
+	stack<string>st;
+	vector<string>v;
+	set<string>se;
+	for (int i = 0; i < n; i++) {
+		string s;
+		cin >> s;
+		st.push(s);
+	}
+	for (int i = 0; i < n; i++) {
+		if (se.find(st.top()) == se.end()) {
+			v.push_back(st.top());
+			se.insert(st.top());
+			st.pop();
+		}
+		else {
+			st.pop();
+		}
+	}
+	for (auto io : v) {
+		cout << io << "\n";
+	}
+}
