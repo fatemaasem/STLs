@@ -1,0 +1,41 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+using namespace std;
+int main() {
+	long long n;
+	cin >> n;
+	priority_queue<long long, vector<long long>, greater<long long>> q;
+	long long  count = 0;
+	long long value = 0;
+	for (long long  i = 0; i < n; i++) {
+		long long x;
+		cin >> x;
+		if (x >= 0) {
+			value += x;
+			count++;
+			//continue;
+			
+		}
+		else if ( x<0&&value + x>= 0) {
+			q.push(x );
+			count++;
+			value += x;
+		}
+		else {
+			if (!q.empty() && q.top()< x&&x<0) {
+				value -= q.top();
+				q.pop();
+				q.push(x );
+				value += x;
+			}
+			
+		}
+	}
+	cout << count <<"\n";
+	}
