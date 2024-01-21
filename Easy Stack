@@ -1,0 +1,40 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+
+using namespace std;
+int main() {
+	stack<int>q;
+	int i = 0;
+	int t;
+	//cin>>t;
+	scanf("%d:", &t);
+
+	while (i < t) {
+		int x;
+		scanf("%d:", &x);
+		//cin >>x;
+		if (x == 1) {
+			int value;
+			scanf("%d:", &value);
+			//cin >> value;
+			q.push(value);
+		}
+		else if (x == 2) {
+			if (!q.empty())
+				q.pop();
+		}
+		else {
+			if (!q.empty()){ //printf("%d", q.front());
+			cout<<q.top()<<"\n";
+			}
+				
+			else
+				printf("Empty!\n");
+
+		}
+		i++;
+	}
+}
