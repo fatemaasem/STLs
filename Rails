@@ -1,0 +1,45 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include<vector>
+#include <algorithm>
+//#include <cmath>
+using namespace std;
+int main() {
+    	int n;
+    	cin>>n;
+      while(true){
+      if(n==0){
+        break;
+      }
+     int arr[n];
+     int i;
+     for( i=0;i<n;i++){
+       	cin>>arr[i];
+       	if(arr[0]==0){
+       	  break;
+         }
+     }
+     if(i>=n){
+       stack<int>s;
+       int in=0;
+       for(int i=1;i<=n;i++){
+           s.push(i);
+           while(!s.empty()&&s.top()==arr[in]&&in<n){
+              s.pop();
+              in++;
+           }
+      }
+        if(s.empty())
+          cout<<"Yes\n";
+        else
+          cout<<"No\n";
+    	}
+    else{
+    	cout<<"\n";
+    	int x;
+     	cin>>x;
+     	n=x;	
+    }
+    }
+}
