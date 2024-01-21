@@ -1,0 +1,89 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+using namespace std;
+int main() {
+	multiset< int>pq;
+	vector<string>v;
+	int n;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		string s;
+		cin >> s;
+		if (s == "insert") {
+			int y;
+			cin >> y;
+			pq.insert(y);
+			v.push_back("insert "+to_string(y));
+		}
+		else if (s == "removeMin") {
+			if (pq.empty()) {
+				v.push_back("insert 1");
+				v.push_back("removeMin");
+			}
+			else {
+				auto io = pq.begin();
+				int c = pq.count(*io);
+				for (int i = 0; i < c; i++) {
+					v.push_back("removeMin");
+				}
+				pq.erase(*io);
+			}
+		}
+		else if (s == "getMin") {
+			int y;
+			cin >> y;
+			bool value = true;
+			/*
+			if (pq.find(y)!=pq.end()) {
+				auto io = pq.begin();
+				while ((*io) != y && io != pq.end()) {
+					cout << "removeMin\n";
+					io++;
+				}
+				cout << "getMin " << y << "\n";
+				pq.erase(pq.begin(), io);
+			}
+			else {
+				auto io = pq.begin();
+				while (!pq.empty()&&(*io) < y ) {
+					int c= pq.count((*io));
+					for (int i = 0; i < c; i++) {
+						cout << "removeMin\n";
+					}
+					pq.erase(io);
+					io++;
+				}
+				
+				pq.insert(y);
+				cout << "insert " << y << "\n";
+				cout << "getMin " << y << "\n";
+			}
+*/
+			////////////////////////
+			if (pq.find(y) == pq.end()) {
+				pq.insert(y);
+				value = false;
+			}
+			auto io = pq.begin();
+			while ((*io) != y ) {
+				v.push_back("removeMin");
+				io++;
+			}
+			if (value == false)v.push_back("insert "+to_string(y)); 
+			v.push_back("getMin "+ to_string(y));
+			pq.erase(pq.begin(), io);
+		}
+	}
+	cout <<v.size() << "\n";
+	for (auto i : v) {
+		cout << i << "\n";
+	}
+	
+}
